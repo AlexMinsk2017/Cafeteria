@@ -5,6 +5,7 @@ import "Cafeteria/pkg/common/services/datastore/infra/datastore"
 type Engine struct {
 	DataStore    *datastore.DataStore
 	Orchestrator *Orchestrator
+	ElasticData  *datastore.DataElastic
 }
 type Orchestrator struct {
 	Engine           *Engine
