@@ -5,6 +5,7 @@ import (
 	"Cafeteria/pkg/common/db"
 	"Cafeteria/pkg/common/services/datastore/infra/datastore"
 	"Cafeteria/pkg/common/services/io/elastic"
+	"Cafeteria/pkg/common/services/io/web"
 	"Cafeteria/pkg/common/services/orchestrator"
 	"log"
 )
@@ -34,4 +35,12 @@ func main() {
 	}
 	engine.Orchestrator = orchestrator.NewOrchestrator(&engine)
 
+	//webservice
+	server := &web.WebServices{
+		Orchestrator: engine.Orchestrator,
+	}
+	err = server.Run()
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
